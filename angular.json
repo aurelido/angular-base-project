@@ -3,5 +3,126 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "ps-store-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/ps-store-app",
+      "sourceRoot": "projects/ps-store-app/src",
+      "prefix": "pssa",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ps-store-app",
+            "index": "projects/ps-store-app/src/index.html",
+            "main": "projects/ps-store-app/src/main.ts",
+            "polyfills": "projects/ps-store-app/src/polyfills.ts",
+            "tsConfig": "projects/ps-store-app/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/ps-store-app/src/favicon.ico",
+              "projects/ps-store-app/src/assets"
+            ],
+            "styles": [
+              "projects/ps-store-app/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ps-store-app/src/environments/environment.ts",
+                  "with": "projects/ps-store-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ps-store-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ps-store-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ps-store-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ps-store-app/src/test.ts",
+            "polyfills": "projects/ps-store-app/src/polyfills.ts",
+            "tsConfig": "projects/ps-store-app/tsconfig.spec.json",
+            "karmaConfig": "projects/ps-store-app/karma.conf.js",
+            "assets": [
+              "projects/ps-store-app/src/favicon.ico",
+              "projects/ps-store-app/src/assets"
+            ],
+            "styles": [
+              "projects/ps-store-app/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ps-store-app/tsconfig.app.json",
+              "projects/ps-store-app/tsconfig.spec.json",
+              "projects/ps-store-app/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ps-store-app/e2e/protractor.conf.js",
+            "devServerTarget": "ps-store-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ps-store-app:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "ps-store-app"
 }
