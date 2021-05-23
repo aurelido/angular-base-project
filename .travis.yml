@@ -47,7 +47,7 @@ deploy:
     skip_cleanup: true
     access_key_id: $S3_ACCESS_KEY_ID 
     secret_access_key: $S3_SECRET_ACCESS_KEY
-    bucket: "arn:aws:s3:::inigual-bucket"
+    bucket: "inigual-bucket"
     local_dir: dist/ps-store-app
     on:
       branch: main
