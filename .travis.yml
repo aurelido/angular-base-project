@@ -45,6 +45,9 @@ deploy:
   # see https://docs.travis-ci.com/user/deployment/s3
   - provider: s3
     skip_cleanup: true
-    access_key_id: "AKIAVNKFRLBCIMEIQS46"
-    secret_access_key: "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"
+    access_key_id: $S3_ACCESS_KEY_ID 
+    secret_access_key: $S3_SECRET_ACCESS_KEY
     bucket: "arn:aws:s3:::inigual-bucket"
+    local_dir: dist/ps-store-app
+    on:
+      branch: main
